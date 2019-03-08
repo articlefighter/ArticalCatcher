@@ -20,6 +20,11 @@ let defaultConf = {
         hot: true,
         compress: true,
     },
+    resolve:{
+      alias: {
+          components:resolve(__dirname,'./src/views/components')
+      }  
+    },
     module: {
         rules: [
             {
@@ -32,6 +37,11 @@ let defaultConf = {
                 },
                 exclude: /node_modules/,
             },
+            {
+                test: /\.(scss|css)$/,
+                loader:'style-loader!css-loader!sass-loader'
+                
+            }
         ],
     },
     plugins: [
