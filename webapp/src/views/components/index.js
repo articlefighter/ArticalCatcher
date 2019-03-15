@@ -1,4 +1,5 @@
-import AInput from './aInput';
-import AHeader from './aHeader';
+import AInput from './input';
+import AHeader from './header';
+import AButton from './button'
 
-export {AInput, AHeader};
+export {AInput, AHeader, AButton};

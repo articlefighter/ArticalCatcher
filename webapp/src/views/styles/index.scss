@@ -1,22 +1,63 @@
 @import './reset.scss';
+@import './variable.scss';
 
-body{
-    background: #e5e5e5;
+input,
+div,
+p,
+ul,
+li,
+section,
+main,
+header,
+nav,
+footer button {
+    box-sizing: border-box;
 }
 
-.main{
-    margin: 40px 20px;
+button,
+input[type='button'],
+input[type='submit'] {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+button,input{
+    border:1px solid $extra-light-silver;
+}
+input{
+    padding: 4px 8px;
+    border-radius: 2px;
+}
+
+body {
+    background: $dark-white;
+}
+
+#root{
+    height: 100vh;
+    overflow: auto;
+}
+
+.main {
+    width: 80%;
+    min-width: 1024px;
+    margin: 40px auto;
     display: flex;
-    background: #fff;
     font-size: 14px;
-    &-left{
-        width:60%;
-    }
-    &-right{
-        margin-left:50px;
+    &-left {
+        @extend .card;
+        width: 60%;
         flex:1;
+        display: flex;
+        flex-direction: column;
+    }
+    &-right {
+        // @extend .card;
+        margin-left: 50px;
         height: 100%;
-        background: #eee;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 }
-

@@ -1,0 +1,31 @@
+$btn-main-color:#FF4949;
+$white:#fff;
+$dark-white:#F9FAFC;
+$gray:#D3DCE6;
+$light-gray:#E5E9F2;
+$extra-light-gray:#EFF2F7;
+$silver:#8492A6;
+$light-silver:#99A9BF;
+$extra-light-silver:#C0CCDA;
+$black:#1F2D3D;
+$light-black:#324057;
+$extra-light-black:#475669;
+.btn-default{
+    border:1px solid $extra-light-silver;
+    background: $white;
+    color:$silver;
+    border-radius: 4px;
+    padding: 0 8px;
+}
+.btn-main{
+    @extend .btn-default;
+    border-color: $btn-main-color;
+    background: $btn-main-color;
+    color:$white;
+}
+
+.card{
+    padding:20px;
+    background: $white;
+    border-radius: 4px;
+}
