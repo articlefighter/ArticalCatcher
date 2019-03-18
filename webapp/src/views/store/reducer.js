@@ -1,7 +1,7 @@
 import {combineReducers,createStore} from 'redux'
 
-
-export const search_url = (state='https://segmentfault.com/a/1190000014627611',action)=>{
+// https://segmentfault.com/a/1190000014627611
+export const search_url = (state='',action)=>{
     if(action.type === 'search'){
         return action.url
     }

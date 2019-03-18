@@ -5,11 +5,12 @@ import './index.scss';
 import {connect} from 'react-redux'
 
 const mapDispatchToProps = (dispatch,ownProps)=>{
+    // console.log('props',ownProps)
     return {
-        onSearch:(url)=>{
-            console.log('dis',url)
+        search:(url)=>{
             dispatch(SEARCH(url))
-        }
+        },
+        onSearch:ownProps.onSearch
     }
 }
 
@@ -22,8 +23,9 @@ class Input extends Component {
     }
 
     _search(e) {
-        console.log('search')
-        const { onSearch } = this.props;
+        const { onSearch, search } = this.props;
+        console.log('search',onSearch)
+        search(this.state.value);
         onSearch(this.state.value);
     }
 
