@@ -1,7 +1,8 @@
 @import '../../styles/variable.scss';
+@import './markdown.scss';
 
 .article{
     flex-grow: 1;
     background: #fff;
-    border:1px solid $extra-light-silver;
+    // border:1px solid $extra-light-silver;
 }

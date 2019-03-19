@@ -6,7 +6,7 @@ import Aritcle from './pages/article';
 import './styles/index.scss';
 export default class App extends Component {
     state = {
-        article: '<p>class</p>',
+        article: '',
     };
 
     onSearch(url) {

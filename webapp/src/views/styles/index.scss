@@ -21,41 +21,68 @@ input[type='submit'] {
     outline: none;
     cursor: pointer;
 }
-button,input{
-    border:1px solid $extra-light-silver;
+button,
+input {
+    border: 1px solid $extra-light-silver;
 }
-input{
+input {
     padding: 4px 8px;
     border-radius: 2px;
+}
+p,
+li,
+ol,
+pre,
+blockquote {
+    line-height: 1.5;
+    margin: 12px 0;
+}
+pre,
+blockquote,
+code {
+    background: $code-bg;
+    padding:12px;
+    border-radius: 2px;
+}
+code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+}
+pre code{
+    color:inherit;
 }
 
 body {
     background: $dark-white;
 }
 
-#root{
+#root {
     height: 100vh;
     overflow: auto;
 }
 
 .main {
-    width: 80%;
-    min-width: 1024px;
+    width: 1240px;
     margin: 40px auto;
     display: flex;
     font-size: 14px;
     &-left {
         @extend .card;
-        width: 60%;
-        flex:1;
+        width: 760px;
+        padding: 20px;
         display: flex;
+        flex: 1;
         flex-direction: column;
     }
     &-right {
-        // @extend .card;
-        margin-left: 50px;
+        box-sizing: content-box;
+        // margin-left: 40px;
         height: 100%;
-        width: 200px;
+        width: 300px;
+        padding: 0 12px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

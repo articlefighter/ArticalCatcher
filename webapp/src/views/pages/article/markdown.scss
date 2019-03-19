@@ -1,0 +1,171 @@
+h1 {
+    font-size: 2em;
+    line-height: 1.75em;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.5em;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.25em;
+}
+h4 {
+    font-size: 1.25em;
+    line-height: 1em;
+}
+h5 {
+    font-size: 1em;
+    line-height: 0.86em;
+}
+h6 {
+    font-size: 0.86em;
+    line-height: 0.75em;
+}
+h4,
+h5,
+p,
+ul,
+ol,
+pre,
+blockquote,
+table {
+    margin: 1.5em 0;
+}
+h1,
+h2,
+h3 {
+    margin: 1.5em 0 0;
+}
+h1 + .widget-codetool + pre,
+h2 + .widget-codetool + pre,
+h3 + .widget-codetool + pre {
+    margin-top: 1.5em !important;
+}
+h1,
+h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+> h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+p:first-child,
+ul:first-child,
+ol:first-child,
+pre:first-child,
+blockquote:first-child {
+    margin-top: 0;
+}
+ul,
+ol {
+    margin-left: 3em;
+    padding-left: 0;
+}
+ul li,
+ol li {
+    margin: 0.3em 0;
+}
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+ul p,
+ol p {
+    margin: 0;
+}
+p:last-child {
+    margin-bottom: 0;
+}
+p > p:empty,
+div > p:empty,
+p > div:empty,
+div > br:only-child,
+p + br {
+    display: none;
+}
+img,
+video,
+audio {
+    position: static !important;
+    max-width: 100%;
+}
+img {
+    padding: 3px;
+    border: 1px solid #ddd;
+}
+img.emoji {
+    padding: 0;
+    border: none;
+}
+blockquote {
+    border-left: 2px solid #009a61;
+    background: #f6f6f6;
+    color: #555;
+    font-size: 1em;
+}
+pre,
+code {
+    font-size: 0.93em;
+}
+pre {
+    padding: 1em;
+    border: none;
+    overflow: auto;
+    line-height: 1.45;
+    max-height: 35em;
+    position: relative;
+    -moz-background-size: 30px, 30px;
+    -o-background-size: 30px, 30px;
+    -webkit-background-size: 30px, 30px;
+    background-size: 30px, 30px;
+}
+pre code {
+    background: none;
+    font-size: 1em;
+    overflow-wrap: normal;
+    white-space: inherit;
+}
+hr {
+    margin: 1.5em auto;
+    border-top: 2px dotted #eee;
+}
+kbd {
+    margin: 0 4px;
+    padding: 3px 4px;
+    background: #eee;
+    color: #555;
+}
+.x-scroll {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+}
+table th,
+table td {
+    border: 1px solid #e6e6e6;
+    padding: 5px 8px;
+    word-break: normal;
+}
+table th {
+    background: #f3f3f3;
+}
+
+a{
+    text-decoration: none;
+    color: #009a61;
+}
+
+a:not(.btn) {
+    border-bottom: 1px solid rgba(0, 154, 97, 0.25);
+    padding-bottom: 1px;
+}
+a:not(.btn):hover {
+    border-bottom: 1px solid #009a61;
+    text-decoration: none;
+}
