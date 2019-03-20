@@ -56,7 +56,7 @@ pre code{
 }
 
 body {
-    background: $dark-white;
+    background: $white;
 }
 
 #root {
@@ -65,26 +65,24 @@ body {
 }
 
 .main {
-    width: 1240px;
-    margin: 40px auto;
-    display: flex;
+    min-width: 1240px;
+    width:90%;
+    margin: 0 auto;
+    padding: 30px 0;
     font-size: 14px;
+    height: 100vh;
+    box-sizing: border-box;
     &-left {
         @extend .card;
-        width: 760px;
-        padding: 20px;
-        display: flex;
-        flex: 1;
-        flex-direction: column;
+        width: calc(100% - 350px);
+        padding: 0 20px;
+        height: calc(100% - 40px)
     }
     &-right {
         box-sizing: content-box;
-        // margin-left: 40px;
-        height: 100%;
+        height: calc(100% - 100px);
         width: 300px;
         padding: 0 12px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        float: right;
     }
 }

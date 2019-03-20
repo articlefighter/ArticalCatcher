@@ -10,4 +10,17 @@ const htmlFormat={
   }
 }
 
-module.exports = htmlFormat
+// const imgDomain={
+//   segmentfault:()=>{
+//     return 
+//   }
+// }
+
+const format = (type,main)=>{
+    console.log(type,htmlFormat[type])
+    return htmlFormat[type](main)
+}
+
+module.exports = {
+    format
+}

@@ -13,12 +13,11 @@ export default class App extends Component {
         fetch('/api/getArticle?url=' + url)
             .then(res => {
                 if (res.ok) {
-                    res.text().then((val)=>{
+                    res.text().then(val => {
                         this.setState({
-                            article:val
-                        })
-                    })
-                    
+                            article: val,
+                        });
+                    });
                 }
             })
             .catch(err => {
@@ -29,14 +28,12 @@ export default class App extends Component {
         return (
             <Fragment>
                 <main className="main">
-                    <div className="main-left">
-                        <AInput
-                            onSearch={url => {
-                                this.onSearch(url);
-                            }}
-                        />
-                        <Aritcle article={this.state.article} />
-                    </div>
+                    <AInput
+                        placeholder='请输入文章链接'
+                        onSearch={url => {
+                            this.onSearch(url);
+                        }}
+                    />
                     <div className="main-right">
                         <section>
                             <Topboard />
@@ -45,6 +42,10 @@ export default class App extends Component {
                             <Recent />
                         </section>
                     </div>
+                    <div className="main-left">
+                        <Aritcle article={this.state.article} />
+                    </div>
+                    
                 </main>
             </Fragment>
         );

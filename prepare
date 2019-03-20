@@ -1,0 +1,5 @@
+#!/bin/sh
+echo "nodeui : npm install ========="
+cd  nodeui& npm install
+echo "nodeui : npm start ==========="
+npm start

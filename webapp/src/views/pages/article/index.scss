@@ -1,8 +1,17 @@
 @import '../../styles/variable.scss';
 @import './markdown.scss';
 
+.article-container{
+    height: 100%;
+}
 .article{
     flex-grow: 1;
     background: #fff;
+    overflow: auto;
+    height: calc(100% - 50px);
     // border:1px solid $extra-light-silver;
+}
+.holder-text{
+    color:$silver;
+    padding-top:50px;
 }
