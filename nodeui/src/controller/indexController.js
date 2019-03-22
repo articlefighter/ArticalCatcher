@@ -21,17 +21,8 @@ const IndexController = {
           try{
               let res = await fetch(path);
               let html = await res.text();
-              let fmtHtml = IndexService.format(domain_name,html);
-              const $ = cheerio.load(fmtHtml);
-              var $imgs = $('img');
-              $imgs.each((idx,item)=>{
-                  let src = $(item).attr('data-src');
-                  if(src){
-                      $(item).attr('src',domain + src)
-                  }
-              })
-              let str = $.html();
-              str = `<p>原文链接：<a href="${path}">${path}</a></p>` + str;
+              let fmtHtml = IndexService.format(domain_name,domain,html);
+              str = `<p>原文链接：<a href="${path}">${path}</a></p>` + fmtHtml;
               ctx.contentType = 'text/html'
               ctx.body = str;
           }catch(err){

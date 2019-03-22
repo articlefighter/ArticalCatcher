@@ -9,6 +9,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const setTitle = require('node-bash-title');
 var GenerateAssetPlugin = require('generate-asset-webpack-plugin');
 const htmlWebpaclPlugin = require('html-webpack-plugin');
+const generateConfigPlugin = require('./generateConfigPlugin');
 
 const devConf = require('./config/dev.conf');
 const prodConf = require('./config/prod.conf');
@@ -17,24 +18,27 @@ const MODE = process.env.NODE_ENV || 'development';
 const build = MODE === 'production' ? true : false;
 const smp = new SpeedMeasurePlugin();
 
+let baseUrl = build ? '' : '/api';
+
 setTitle('webpack start build');
+
+
 
 let entry =
     MODE === 'dll'
         ? {
-              vendor: ['babel-polyfill', 'whatwg-fetch', 'react', 'turndown'],
+              vendor: ['babel-polyfill', 'whatwg-fetch', 'react', 'react-dom','turndown'],
           }
         : {
-              vendor: ['babel-polyfill', 'whatwg-fetch', 'react', 'turndown'],
+              vendor: ['babel-polyfill', 'whatwg-fetch', 'react','react-dom', 'turndown'],
               main: resolve(__dirname, './src/index.js'),
           };
 
-let baseUrl = build ? '/' : '/api';
-const createConfig = compilation => {
-    return JSON.stringify({
-        baseUrl: baseUrl,
-    });
-};
+// const createConfig = compilation => {
+//     return JSON.stringify({
+//         baseUrl: baseUrl,
+//     });
+// };
 
 let defaultConf = {
     entry,
@@ -99,6 +103,12 @@ let defaultConf = {
     },
     plugins: [
         // new ExtractTextPlugin("main.css")
+        new generateConfigPlugin({
+            path:resolve(__dirname),
+            content:{
+                baseUrl
+            }
+        }),
         new htmlWebpaclPlugin({
             filename: 'index.html',
             template: './src/index.html',
@@ -107,13 +117,13 @@ let defaultConf = {
             filename: '[name].css',
             chunkFilename: '[id].css',
         }),
-        new GenerateAssetPlugin({
-            filename: '../config.json',
-            fn: (compilation, cb) => {
-                cb(null, createConfig(compilation));
-            },
-            extraFiles: [],
-        }),
+        // new GenerateAssetPlugin({
+        //     filename: '../config.json',
+        //     fn: (compilation, cb) => {
+        //         cb(null, createConfig(compilation));
+        //     },
+        //     extraFiles: [],
+        // }),
         // new OptimizeCssAssetsPlugin({
         //     assetNameRegExp: /\.css$/g,
         //     cssProcessor: require('cssnano'),

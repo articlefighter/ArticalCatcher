@@ -1,5 +1,5 @@
 const isSegmentfault = (url)=>{
-    let regx = /http(s)\:\/\/segmentfault\.com/;
+    let regx = /http(s)\:\/\/(www\.)segmentfault\.com/;
     if(regx.test(url)){
         return true
     }
@@ -7,7 +7,7 @@ const isSegmentfault = (url)=>{
 }
 
 const isJueJin = (url)=>{
-    let regx = /http(s)\:\/\/juejin\.im/;
+    let regx = /http(s)\:\/\/(www\.)juejin\.im/;
     if(regx.test(url)){
         return true
     }
@@ -15,7 +15,7 @@ const isJueJin = (url)=>{
 }
 
 const isJianShu = (url)=>{
-    let regx = /http(s)\:\/\/jianshu\.com/;
+    let regx = /http(s)\:\/\/(www\.)jianshu\.com/;
     if(regx.test(url)){
         return true
     }
