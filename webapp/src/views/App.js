@@ -4,32 +4,28 @@ import Recent from './pages/recent';
 import Topboard from './pages/topboard';
 import Aritcle from './pages/article';
 import './styles/index.scss';
+import _fetch from './request';
 export default class App extends Component {
     state = {
         article: '',
     };
 
-    onSearch(url) {
-        fetch('/api/getArticle?url=' + url)
-            .then(res => {
-                if (res.ok) {
-                    res.text().then(val => {
-                        this.setState({
-                            article: val,
-                        });
-                    });
-                }
-            })
-            .catch(err => {
-                console.log('fetch err:', err);
+    async onSearch(url) {
+        const res = await _fetch('/getArticle?url=' + url);
+        if (res.status === 1 && res.data) {
+            this.setState({
+                article: res.data,
             });
+        }
+
     }
     render() {
+        console.log('app render ==============');
         return (
             <Fragment>
-                <main className="main">
+                <div className="main">
                     <AInput
-                        placeholder='请输入文章链接'
+                        placeholder="请输入文章链接"
                         onSearch={url => {
                             this.onSearch(url);
                         }}
@@ -45,8 +41,7 @@ export default class App extends Component {
                     <div className="main-left">
                         <Aritcle article={this.state.article} />
                     </div>
-                    
-                </main>
+                </div>
             </Fragment>
         );
     }

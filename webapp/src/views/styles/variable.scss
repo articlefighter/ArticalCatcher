@@ -12,6 +12,9 @@ $light-black:#324057;
 $extra-light-black:#475669;
 $code-bg:#f6f6f6;
 $link-color:#009a61;
+:root{
+    --color:#333;
+}
 .btn-default{
     border:1px solid $extra-light-silver;
     background: $white;
@@ -37,4 +40,7 @@ $link-color:#009a61;
     background: $white;
     border-radius: 4px;
     box-sizing: border-box;
+    transition: all 0.1s ease-in-out;
+    transform:translate3d(0,0,0);
+    color:var(--color);
 }

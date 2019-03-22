@@ -43,8 +43,14 @@ class Article extends Component {
         let article = this.props.article;
         if (article) {
             let content = turndownService.turndown(article);
-            console.log('content', content);
-            this._downloadFile(content, 'test.md');
+            let h1 = document.getElementsByTagName('h1');
+            let title='';
+            if(h1.length){
+                title = h1[0].innerText;
+                title = title.trim()+'.md';
+            }
+            console.log('title',title)
+            this._downloadFile(content, title);
         }
     }
 
@@ -53,16 +59,17 @@ class Article extends Component {
         // console.log('url',this.props.url)
         // console.log('article',article)
         // 支持网站：知乎、掘金、InfoQ、简书
-        const main = this.props.url ? (
+        const main = this.props.article ? (
             <div
                 id="D-article"
                 className="article"
                 dangerouslySetInnerHTML={{ __html: article }}
-            />
+            ></div>
         ) : (
             <p className="holder-text">
                 截取网站文章，转成 markdown
-                文件，支持网站：Segmentfault、知乎、掘金、InfoQ、简书
+                文件，支持网站：Segmentfault
+                {/* 、知乎、掘金、InfoQ、简书 */}
             </p>
         );
         return (
