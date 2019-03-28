@@ -1,6 +1,13 @@
 ## ArticleSpider
 > 解析Segmentfault、InfoQ、简书、掘金、知乎网站上的文章，将作者的原文章提取出来，转成 Markdown 文件。
 
+## TODO
+### miao
+- [ ] 各网站 css 类名替换及样式兼容
+- [ ] infoq juejin 使用爬虫爬取文章
+- [ ] nodeui 代码优化
+- [ ] 第一版部署至阿里云（配置shell脚本）
+
 ### 技术架构
 - 前台: React
 - 后台: Node
@@ -34,6 +41,11 @@ ArticleSpider
 cd webapp
 npm run dev
 ```
+
+### 前端架构
+#### 主要技术栈为 react redux
+#### webpack 配置
+- js 解析使用 
 
 
 ### issue

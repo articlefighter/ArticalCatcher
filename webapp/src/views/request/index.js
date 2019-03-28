@@ -12,46 +12,6 @@ const defaultHeaders = {
     'Content-Type': 'application/json',
 };
 
-// async function safeFetch(url, options) {
-//     let defaultOptions = Object.assign({}, defaultOpt);
-//     if (options) {
-
-//         defaultOptions = Object.assign(defaultOptions, options);
-//     }
-//     if (url) {
-//         const res = await fetch(baseUrl + url, defaultOptions);
-//         try {
-//             if (res.ok) {
-//                 let type = res.headers.get('Content-Type');
-//                 let data;
-//                 switch (type) {
-//                     case 'application/json':
-//                         data = await res.json();
-//                         break;
-//                     case 'text/plain':
-//                     case 'text/html':
-//                         data = await res.text();
-//                 }
-//                 return Promise.resolve({
-//                     status: 1,
-//                     statusText: 'success',
-//                     data,
-//                 });
-//             }
-//             return Promise.reject({
-//                 status: 0,
-//                 statusText: 'fail',
-//             });
-//         } catch (err) {
-//             return Promise.reject({
-//                 status: -1,
-//                 statusText: 'error',
-//                 message: err,
-//             });
-//         }
-//     }
-// }
-
 const responseHandler = async response => {
     if (response && response.ok) {
         let data;
@@ -82,12 +42,12 @@ const responseHandler = async response => {
     };
 };
 
-const get = async (url, data = {}, headers = {}, options) => {
+const _get = async (url, data = {}, headers = {}, options) => {
     let paramStr = '';
-    for (key in data) {
+    for (let key in data) {
         paramStr += `${key}=${encodeURIComponent(data[key])}`;
     }
-    url = `${url}?${paramStr}`;
+    paramStr&&(url = `${url}?${paramStr}`);
 
     try {
         let response = await fetch(url, { ...options, headers });
@@ -102,7 +62,7 @@ const get = async (url, data = {}, headers = {}, options) => {
     }
 };
 
-const post = async (url, data = {}, headers = new Headers(), options) => {
+const _post = async (url, data = {}, headers = new Headers(), options) => {
     // application/x-www-form-urlencoded
     let contentType = headers.get('Content-Type');
     if (contentType.match(/application\/x-www-form-urlencoded/)) {
@@ -128,7 +88,7 @@ const post = async (url, data = {}, headers = new Headers(), options) => {
 
 // options: method,headers,data
 
-const _fetch = async (url, options = {}) => {
+const $fetch = async (url, options = {}) => {
     url = baseUrl + url || '';
     let headers;
     let data;
@@ -155,9 +115,9 @@ const _fetch = async (url, options = {}) => {
     }
 
     if (method === 'GET') {
-        return await get(url, data, headers, config);
+        return await _get(url, data, headers, config);
     }
     // return await post(url,data,headers,config)
 };
 
-export default _fetch;
+export default $fetch;

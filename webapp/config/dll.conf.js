@@ -7,7 +7,6 @@ module.exports = {
         new CleanWebpackPlugin(),
         new DllPlugin({
             path: path.join(__dirname, '../dist/manifest.json'),
-            // name: '[name]_library',
         })
     ]
 }

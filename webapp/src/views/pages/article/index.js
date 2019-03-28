@@ -6,10 +6,18 @@
 
 import React, { Component } from 'react';
 import TurndownService from 'turndown';
+var turndownPluginGfm = require('turndown-plugin-gfm')
+var gfm = turndownPluginGfm.gfm
+var tables = turndownPluginGfm.tables
+var strikethrough = turndownPluginGfm.strikethrough
 import './index.scss';
 import { connect } from 'react-redux';
 import { AButton } from 'components';
 const turndownService = new TurndownService();
+turndownService.use(gfm)
+
+// Use the table and strikethrough plugins only
+turndownService.use([tables, strikethrough])
 
 const mapStateToProps = (state, ownProps) => {
     return {

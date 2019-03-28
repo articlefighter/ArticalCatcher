@@ -1,5 +1,6 @@
 const isSegmentfault = (url)=>{
-    let regx = /http(s)\:\/\/(www\.)segmentfault\.com/;
+    console.log('url---',url)
+    let regx = /http(s)?\:\/\/(www\.)?segmentfault\.com/;
     if(regx.test(url)){
         return true
     }
@@ -7,7 +8,7 @@ const isSegmentfault = (url)=>{
 }
 
 const isJueJin = (url)=>{
-    let regx = /http(s)\:\/\/(www\.)juejin\.im/;
+    let regx = /http(s)?\:\/\/(www\.)?juejin\.im/;
     if(regx.test(url)){
         return true
     }
@@ -15,7 +16,7 @@ const isJueJin = (url)=>{
 }
 
 const isJianShu = (url)=>{
-    let regx = /http(s)\:\/\/(www\.)jianshu\.com/;
+    let regx = /http(s)?\:\/\/(www\.)?jianshu\.com/;
     if(regx.test(url)){
         return true
     }
@@ -23,7 +24,7 @@ const isJianShu = (url)=>{
 }
 
 const isZhiHu = (url)=>{
-    let regx = /http(s)\:\/\/zhuanlan\.zhihu\.com/;
+    let regx = /http(s)?\:\/\/zhuanlan\.zhihu\.com/;
     if(regx.test(url)){
         return true
     }
@@ -31,7 +32,7 @@ const isZhiHu = (url)=>{
 }
 
 const isInfoQ = (url)=>{
-    let regx = /http(s)\:\/\/www\.infoq\.cn/;
+    let regx = /http(s)?\:\/\/(www\.)?infoq\.cn/;
     if(regx.test(url)){
         return true
     }

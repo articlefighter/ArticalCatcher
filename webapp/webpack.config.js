@@ -8,57 +8,48 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const setTitle = require('node-bash-title');
 var GenerateAssetPlugin = require('generate-asset-webpack-plugin');
-const htmlWebpaclPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 const generateConfigPlugin = require('./generateConfigPlugin');
+const HappyPack = require('happypack');
 
 const devConf = require('./config/dev.conf');
 const prodConf = require('./config/prod.conf');
 const dllConf = require('./config/dll.conf');
 const MODE = process.env.NODE_ENV || 'development';
-const build = MODE === 'production' ? true : false;
+const BUILD = MODE === 'production' ? true : false;
 const smp = new SpeedMeasurePlugin();
 
-let baseUrl = build ? '' : '/api';
+let baseUrl = BUILD ? '' : '/api';
 
-setTitle('webpack start build');
+setTitle('webpack start BUILD');
 
-
+const loading = {
+    html: `<div style='position:fixed;width:100vw;height:100vh;background:url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553754321343&di=68c7721d5ac711be7ccaf0b3d247cb5b&imgtype=0&src=http%3A%2F%2Fimg.ui.cn%2Fdata%2Ffile%2F3%2F4%2F0%2F1814043.gif%3FimageMogr2%2Fauto-orient%2Fstrip%2Fthumbnail%2F%2521900%253E") no-repeat center center'></div>`,
+};
 
 let entry =
     MODE === 'dll'
         ? {
-              vendor: ['babel-polyfill', 'whatwg-fetch', 'react', 'react-dom','turndown'],
+              vendor: [
+                  'babel-polyfill',
+                  'whatwg-fetch',
+                  'react',
+                  'react-dom',
+                  'turndown',
+              ],
           }
         : {
-              vendor: ['babel-polyfill', 'whatwg-fetch', 'react','react-dom', 'turndown'],
-              main: resolve(__dirname, './src/index.js'),
+              //   vendor: ['babel-polyfill', 'whatwg-fetch', 'react','react-dom', 'turndown'],
+              main: ['babel-polyfill', resolve(__dirname, './src/index.js')],
           };
 
-// const createConfig = compilation => {
-//     return JSON.stringify({
-//         baseUrl: baseUrl,
-//     });
-// };
 
 let defaultConf = {
     entry,
     output: {
-        filename: '[name][hash:5].js',
+        filename: '[name]_[hash:5].js',
         path: resolve(__dirname, './dist'),
-        publicPath: '/dist',
-    },
-    devServer: {
-        host: 'localhost',
-        port: 8080,
-        hot: true,
-        compress: true,
-        proxy: {
-            '/api': {
-                target: 'http://localhost:3000',
-                changeOrigin: true,
-                pathRewrite: { '^/api': '' },
-            },
-        },
+        publicPath: BUILD ? 'http://localhost:3001' : '',
     },
     resolve: {
         alias: {
@@ -70,24 +61,11 @@ let defaultConf = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/env', '@babel/preset-react'],
-                        plugins: ['@babel/plugin-proposal-class-properties'],
-                    },
-                },
+                use: ['happypack/loader?id=babel'],
+
+                include: resolve(__dirname, './src'),
                 exclude: /node_modules/,
             },
-            // {
-            //     test: /\.(scss|css)$/,
-            //     use: ExtractTextPlugin.extract({
-            //         fallback: 'style-loader',
-            //         use: 'css-loader!sass-loader',
-            //     }),
-
-            //     // loader: 'style-loader!css-loader!sass-loader',
-            // },
             {
                 test: /\.(scss|css)$/,
                 use: [
@@ -101,29 +79,63 @@ let defaultConf = {
             },
         ],
     },
+    performance: {
+        maxEntrypointSize: 300000,
+        maxAssetSize: 300000,
+    },
     plugins: [
-        // new ExtractTextPlugin("main.css")
         new generateConfigPlugin({
-            path:resolve(__dirname),
-            content:{
-                baseUrl
-            }
+            path: resolve(__dirname),
+            content: {
+                baseUrl,
+            },
         }),
-        new htmlWebpaclPlugin({
+        new htmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.html',
+            loading,
         }),
+        new webpack.DefinePlugin({
+            mode: JSON.stringify(MODE),
+        }),
+        new HappyPack({
+            id: 'babel',
+            loaders: [
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true,
+                        babelrc: false,
+                        presets: [
+                            [
+                                '@babel/env',
+                                {
+                                    loose: true,
+                                    modules: false,
+                                },
+                            ],
+                            '@babel/preset-react',
+                        ],
+                        plugins: BUILD
+                            ? [
+                                  '@babel/plugin-proposal-class-properties',
+                                  '@babel/plugin-syntax-dynamic-import',
+                              ]
+                            : [
+                                  '@babel/plugin-proposal-class-properties',
+                                  'babel-plugin-dynamic-import-node',
+                                  '@babel/plugin-syntax-dynamic-import',
+                              ],
+                    },
+                },
+            ],
+        }),
+        
         new MiniCssExtractPlugin({
-            filename: '[name].css',
-            chunkFilename: '[id].css',
+            filename: '[name]_[contenthash:5].css',
+            chunkFilename: '[id]_[contenthash:5].css',
         }),
-        // new GenerateAssetPlugin({
-        //     filename: '../config.json',
-        //     fn: (compilation, cb) => {
-        //         cb(null, createConfig(compilation));
-        //     },
-        //     extraFiles: [],
-        // }),
+        new webpack.HashedModuleIdsPlugin(),
         // new OptimizeCssAssetsPlugin({
         //     assetNameRegExp: /\.css$/g,
         //     cssProcessor: require('cssnano'),
@@ -133,15 +145,10 @@ let defaultConf = {
         //     canPrint: true,
         // }),
 
-        // new webpack.DllPlugin({
-        //     context:__dirname,
-        //     name:'[name]_[hash:3]',
-        //     path:resolve(__dirname,'mainfest.json')
-        // }),
         new ProgressBarPlugin(),
     ],
 };
 
 module.exports = smp.wrap(
-    merge(defaultConf, build ? prodConf : MODE === 'dll' ? dllConf : devConf)
+    merge(defaultConf, BUILD ? prodConf : MODE === 'dll' ? dllConf : devConf)
 );

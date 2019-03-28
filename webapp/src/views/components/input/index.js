@@ -24,9 +24,13 @@ class Input extends Component {
 
     _search(e) {
         const { onSearch, search } = this.props;
-        console.log('search',onSearch)
         search(this.state.value);
         onSearch(this.state.value);
+    }
+    handleKeydown(e){
+        if(e.keyCode==13){
+            this._search()
+        }
     }
 
     render() {
@@ -43,6 +47,7 @@ class Input extends Component {
                             value:e.target.value
                         })
                     }}
+                    onKeyDown={(e)=>{this.handleKeydown(e);}}
                 />
                 <AButton
                     className="button"

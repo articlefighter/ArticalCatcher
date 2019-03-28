@@ -5,9 +5,11 @@ import { Provider } from 'react-redux';
 import App from './views/App';
 import { store } from './views/store/reducer';
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
-);
+setTimeout(() => {
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        document.getElementById('root')
+    );
+}, 3000);
