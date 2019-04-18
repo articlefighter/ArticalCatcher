@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 export default class AButton extends Component {
-    _click(e){
-        let {onClick} = this.props;
-        if(onClick){
-            onClick(e)
+    _click(e) {
+        let { onClick } = this.props;
+        if (onClick) {
+            onClick(e);
         }
     }
 
     render() {
-        const { className, ButtonStyle, children, onClick ,type } = this.props;
-        let defaultClass = `btn-${type}`
+        const {
+            className,
+            ButtonStyle,
+            children,
+            type,
+        } = this.props;
+        let defaultClass = `btn-${type||'default'}`;
         return (
-            <div>
-                <button className={`${defaultClass} ${className}`} style={ButtonStyle}
-                onClick={(e)=>{this._click(e)}}>
+            <button type='button' className={`btn ${defaultClass} ${className}`} style={ButtonStyle||{}} onClick={(e)=>this._click(e)}> 
+                <span>
                     {children}
-                </button>
-            </div>
-        );
+                </span>
+            </button>
+        )
     }
 }

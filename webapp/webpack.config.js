@@ -24,7 +24,7 @@ let baseUrl = BUILD ? '' : '/api';
 setTitle('webpack start BUILD');
 
 const loading = {
-    html: `<div style='position:fixed;width:100vw;height:100vh;background:url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553754321343&di=68c7721d5ac711be7ccaf0b3d247cb5b&imgtype=0&src=http%3A%2F%2Fimg.ui.cn%2Fdata%2Ffile%2F3%2F4%2F0%2F1814043.gif%3FimageMogr2%2Fauto-orient%2Fstrip%2Fthumbnail%2F%2521900%253E") no-repeat center center'></div>`,
+    html: `<div style='position:fixed;width:100vw;height:100vh;background:url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553754321343&di=68c7721d5ac711be7ccaf0b3d247cb5b&imgtype=0&src=http%3A%2F%2Fimg.ui.cn%2Fdata%2Ffile%2F3%2F4%2F0%2F1814043.gif%3FimageMogr2%2Fauto-orient%2Fstrip%2Fthumbnail%2F%2521900%253E") no-repeat  center center/30%  '></div>`,
 };
 
 let entry =
@@ -39,21 +39,21 @@ let entry =
               ],
           }
         : {
-              //   vendor: ['babel-polyfill', 'whatwg-fetch', 'react','react-dom', 'turndown'],
               main: ['babel-polyfill', resolve(__dirname, './src/index.js')],
           };
-
 
 let defaultConf = {
     entry,
     output: {
         filename: '[name]_[hash:5].js',
         path: resolve(__dirname, './dist'),
-        publicPath: BUILD ? 'http://localhost:3001' : '',
+        publicPath: BUILD ? 'http://localhost:3001/' : '',
+        // publicPath: '/webapp',
     },
     resolve: {
         alias: {
             components: resolve(__dirname, './src/views/components'),
+            res: resolve(__dirname, './src/res')
         },
     },
 
@@ -76,6 +76,10 @@ let defaultConf = {
                     'postcss-loader',
                     'sass-loader',
                 ],
+            },
+            {
+                test: /\.(jpg|jpge|png|eot|ttf|woff|svg)/,
+                loader: 'file-loader',
             },
         ],
     },
@@ -130,7 +134,7 @@ let defaultConf = {
                 },
             ],
         }),
-        
+
         new MiniCssExtractPlugin({
             filename: '[name]_[contenthash:5].css',
             chunkFilename: '[id]_[contenthash:5].css',

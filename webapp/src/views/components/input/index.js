@@ -24,6 +24,7 @@ class Input extends Component {
 
     _search(e) {
         const { onSearch, search } = this.props;
+        console.log('serar')
         search(this.state.value);
         onSearch(this.state.value);
     }
@@ -53,6 +54,7 @@ class Input extends Component {
                     className="button"
                     style={ButtonStyle}
                     onClick={e => {
+                        console.log('click')
                         this._search(e);
                     }}
                 >

@@ -10,6 +10,7 @@ const IndexController = {
           let params = url.parse(ctx.url,true)
           console.log('params',params)
           let path = params.query.url||'';
+          let selector = params.query.selector || '';
           if(!path.length){
               return
           }
@@ -21,7 +22,7 @@ const IndexController = {
           try{
               let res = await fetch(path);
               let html = await res.text();
-              let fmtHtml = IndexService.format(domain_name,domain,html);
+              let fmtHtml = IndexService.format(domain_name,domain,html,selector);
               str = `<p>原文链接：<a href="${path}">${path}</a></p>` + fmtHtml;
               ctx.contentType = 'text/html'
               ctx.body = str;

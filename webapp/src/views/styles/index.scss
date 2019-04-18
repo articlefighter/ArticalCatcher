@@ -1,5 +1,9 @@
 @import './reset.scss';
 @import './variable.scss';
+@import './component.scss';
+@import './icon.scss';
+@import './header.scss';
+@import '../../res/icon/iconfont.css';
 
 input,
 div,
@@ -64,6 +68,16 @@ body {
     overflow: auto;
 }
 
+// common
+.row{
+    padding:0 8px;
+    display: block;
+}
+.a{
+    color:$link-color;
+    cursor: pointer;
+}
+
 .main {
     // min-width: 1024px;
     width:90%;
@@ -85,4 +99,9 @@ body {
         padding: 0 12px;
         float: right;
     }
+}
+
+
+.mode{
+    line-height: 30px;
 }

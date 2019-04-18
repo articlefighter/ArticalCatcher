@@ -23,6 +23,7 @@ export default class AHeader extends Component {
                             _this._search(url)
                         }}
                     />
+                    
                 </div>
             </header>
         );

@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const target = 'http://localhost:3000';
 
 module.exports = {
     mode: 'development',
@@ -10,9 +11,15 @@ module.exports = {
         compress: true,
         proxy: {
             '/api': {
-                target: 'http://localhost:3000',
+                target,
                 changeOrigin: true,
-                pathRewrite: { '^/api': '' },
+                pathRewrite: (path,req)=>{
+                    let requestPath = path.replace('/api','');
+                    let host = req.headers.host
+                    console.log(`requset   ${target}${requestPath}`)
+                    return requestPath
+                },
+                autoRewrite:true
             },
         },
     },

@@ -1,0 +1,29 @@
+.i-menu.icon {
+    color: #000;
+    position: absolute;
+    margin-left: 2px;
+    margin-top: 6px;
+    width: 17px;
+    height: 1px;
+    background-color: currentColor;
+}
+
+.i-menu.icon:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 17px;
+    height: 1px;
+    background-color: currentColor;
+}
+
+.i-menu.icon:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 17px;
+    height: 1px;
+    background-color: currentColor;
+}

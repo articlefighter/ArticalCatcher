@@ -15,6 +15,17 @@ $link-color:#009a61;
 :root{
     --color:#333;
 }
+
+.btn{
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    position: relative;
+}
+
+
 .btn-default{
     border:1px solid $extra-light-silver;
     background: $white;
@@ -25,6 +36,8 @@ $link-color:#009a61;
         background: darken($white,10%)
     }
 }
+
+
 .btn-main{
     @extend .btn-default;
     border-color: $btn-main-color;

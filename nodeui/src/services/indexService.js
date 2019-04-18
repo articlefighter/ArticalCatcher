@@ -55,6 +55,11 @@ const htmlFormat = {
         return `<h1>${title}</h1>${content}`
 
     },
+    //TODO: 图片资源等未做处理，可能无法显示
+    customQuery: (main,selector)=>{
+        let $ = cheerio.load(main);
+        return $(selector).html();
+    }
 };
 
 // const imgDomain={
@@ -63,12 +68,16 @@ const htmlFormat = {
 //   }
 // }
 
-const format = (type, domian, main) => {
-    console.log(type, htmlFormat[type]);
-    if (type in htmlFormat) {
-        return htmlFormat[type](domian, main);
+//存在 selector 时使用自定义 selector，否则判断是否是 htmlFormat 的 type
+const format = (type, domian, main,selector) => {
+    console.log(type,selector);
+    if(!selector){
+        if (type in htmlFormat) {
+            return htmlFormat[type](domian, main);
+        }
+        return '<h1>暂不支持该网站！</h1>';
     }
-    return '<h1>暂不支持该网站！</h1>';
+    return htmlFormat.customQuery(main,selector)
 };
 
 module.exports = {
