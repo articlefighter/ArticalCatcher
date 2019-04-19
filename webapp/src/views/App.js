@@ -17,13 +17,16 @@ export default class App extends Component {
         };
 
         this.selector = createRef();
+        this.urlDomain = createRef();
+        this.browserHeight = createRef();
+        this.browserWidth = createRef();
     }
 
     async onSearch(url) {
-        console.log('url', url,);
+        console.log('url', url);
         var paramStr = '';
-        if(url){
-            paramStr+=`?url=${url}`
+        if (url) {
+            paramStr += `?url=${url}`;
         }
         // if(this.selector && this.selector.current.value){
         //     let symbol = url?'&&':'?';
@@ -43,14 +46,13 @@ export default class App extends Component {
         return (
             <Fragment>
                 <div className="main">
-                    <AInput
+                    <MInput
                         placeholder="请输入文章链接"
                         onSearch={url => {
                             this.onSearch(url);
                         }}
                     />
-                    <MInput></MInput>
-                    <div className="row">
+                    <div className="row main-mode">
                         <span
                             className="a mode"
                             onClick={() => {
@@ -63,12 +65,66 @@ export default class App extends Component {
                         </span>
                         {this.state.mode === 1 && (
                             <Fragment>
-                                <span style={{marginLeft:'20px'}}>设置选择器：</span>
-                                <input
-                                    ref={this.selector}
-                                    className="input mode-input"
-                                    style={{height:'30px',padding:'0 4px'}}
-                                />
+                                <form className="inline-form">
+                                    <div className="form-item inline-form-item">
+                                        <span style={{ marginLeft: '20px' }}>
+                                            设置选择器：
+                                        </span>
+                                        <input
+                                            ref={this.selector}
+                                            className="input mode-input"
+                                            style={{
+                                                height: '30px',
+                                                padding: '0 4px',
+                                            }}
+                                        />
+                                    </div>
+
+                                    <div className="form-item inline-form-item">
+                                        <span style={{ marginLeft: '20px' }}>
+                                            图片域名：
+                                        </span>
+                                        <input
+                                            ref={this.urlDomain}
+                                            className="input mode-input"
+                                            style={{
+                                                height: '30px',
+                                                padding: '0 4px',
+                                            }}
+                                        />
+                                    </div>
+
+                                    <div className="form-item inline-form-item">
+                                        <span style={{ marginLeft: '20px' }}>
+                                            浏览器高度：
+                                        </span>
+                                        <input
+                                            ref={this.browserHeight}
+                                            className="input mode-input"
+                                            style={{
+                                                height: '30px',
+                                                padding: '0 4px',
+                                            }}
+                                        />
+                                    </div>
+
+                                    <div className="form-item inline-form-item">
+                                        <span style={{ marginLeft: '20px' }}>
+                                            浏览器宽度：
+                                        </span>
+                                        <input
+                                            ref={this.browserWidth}
+                                            className="input mode-input"
+                                            style={{
+                                                height: '30px',
+                                                padding: '0 4px',
+                                            }}
+                                        />
+                                    </div>
+                                </form>
+                                <span className="a" style={{ marginLeft: '20px' }}>
+                                    配置文件
+                                </span>
                             </Fragment>
                         )}
                     </div>
@@ -85,6 +141,7 @@ export default class App extends Component {
                         <Aritcle article={this.state.article} />
                     </div>
                 </div>
+                <div className="footer" />
             </Fragment>
         );
     }

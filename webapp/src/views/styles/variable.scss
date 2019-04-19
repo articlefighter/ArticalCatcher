@@ -4,7 +4,7 @@ $dark-white:#F9FAFC;
 $gray:#D3DCE6;
 $light-gray:#E5E9F2;
 $extra-light-gray:#EFF2F7;
-$silver:#8492A6;
+$silver:#8492A6;  //font color
 $light-silver:#99A9BF;
 $extra-light-silver:#C0CCDA;
 $black:#1F2D3D;
@@ -12,8 +12,13 @@ $light-black:#324057;
 $extra-light-black:#475669;
 $code-bg:#f6f6f6;
 $link-color:#009a61;
+$border:1px solid $extra-light-silver;
 :root{
     --color:#333;
+}
+
+body{
+    background: $dark-white;
 }
 
 .btn{
@@ -23,6 +28,11 @@ $link-color:#009a61;
     cursor: pointer;
     background: #fff;
     position: relative;
+}
+
+.btn-large{
+    font-size: 16px;
+    padding:10px 16px;
 }
 
 
@@ -46,6 +56,9 @@ $link-color:#009a61;
     &:active{
         background: darken($btn-main-color,10%)
     }
+    span,i{
+        color:inherit;
+    }
 }
 
 .card{
@@ -56,4 +69,8 @@ $link-color:#009a61;
     transition: all 0.1s ease-in-out;
     transform:translate3d(0,0,0);
     color:var(--color);
+}
+
+.inline_block{
+    display: inline-block;
 }

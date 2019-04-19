@@ -1,4 +1,6 @@
 const cheerio = require('cheerio');
+const browser = require('./spiderService');
+
 
 const htmlFormat = {
     segmentfault: (domain, main) => {
@@ -80,6 +82,11 @@ const format = (type, domian, main,selector) => {
     return htmlFormat.customQuery(main,selector)
 };
 
+const spiderHtml = options=>{
+    return browser.spiderHtml(options)
+}
+
 module.exports = {
     format,
+    spiderHtml
 };
