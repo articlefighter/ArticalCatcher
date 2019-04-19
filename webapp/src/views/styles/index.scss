@@ -1,5 +1,5 @@
-@import './reset.scss';
 @import './variable.scss';
+@import './reset.scss';
 @import './component.scss';
 @import './icon.scss';
 @import './header.scss';
@@ -89,8 +89,9 @@ body {
     &-left {
         @extend .card;
         // width: calc(100% - 350px);
-        padding: 0 20px;
-        height: calc(100% - 40px)
+        padding: 0;
+        height: calc(100% - 80px);
+        background: transparent;
     }
     &-right {
         box-sizing: content-box;
@@ -99,9 +100,21 @@ body {
         padding: 0 12px;
         float: right;
     }
+
+    &-mode{
+        padding: 12px 0;
+    }
 }
 
 
 .mode{
     line-height: 30px;
+}
+
+
+.form-item{
+    
+}
+.inline-form-item,.inline-form{
+    @extend .inline_block;
 }

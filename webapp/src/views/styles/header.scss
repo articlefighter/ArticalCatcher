@@ -1,3 +1,62 @@
-.mInput-btn{
-    width:200px;
+
+.mInput-row{
+    border:2px solid $btn-main-color;
+    display: flex;
 }
+
+.mInput-btn-wrap{
+    position: relative;
+    display: inline-block;
+    border-right: $border;
+    button.mInput-btn{
+        padding:11px 16px;
+        vertical-align: middle;
+        border:none;
+        i{
+            margin-left: 6px;
+        }
+    }
+
+    ul{
+        visibility: hidden;
+        z-index: 10;
+        margin-top:4px;
+        border:$border;
+        position: absolute;
+        padding:6px 16px;
+        background: $white;
+        border-radius: 2px;
+        &.visible{
+            visibility: visible;
+        }
+
+        li{
+            margin:6px 0 0 0;
+            cursor: pointer;
+            a:hover{
+                color:$link-color;
+            }
+        }
+    }
+}
+
+.mInput-input-wrap{
+    flex-grow: 1;
+}
+.mInput-input{
+    border: none;
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px;
+    outline: none;
+    width:100%;
+}
+
+button.mInput-search{
+    padding:11px 22px;
+    border-radius: 0;
+    i{
+        color: #fff;
+    }
+}
+

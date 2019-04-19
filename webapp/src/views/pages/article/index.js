@@ -86,7 +86,8 @@ class Article extends Component {
                 {this.props.article && (
                     <div style={{ marginTop: '12px' }}>
                         <AButton
-                            type="default"
+                            type="main"
+                            className="btn-large"
                             onClick={() => {
                                 this.click();
                             }}

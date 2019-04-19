@@ -1,4 +1,6 @@
 const cheerio = require('cheerio');
+const browser = require('./spiderService');
+
 
 const htmlFormat = {
     segmentfault: (domain, main) => {
